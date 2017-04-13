@@ -33,6 +33,7 @@ while(True):
 EachScore = 100/num
 Score = 0
 TotalTime = 0
+WrongQuestion = []
 
 print("---------------------开始做题-------------------")
 for i in range(1,num+1):
@@ -58,20 +59,29 @@ for i in range(1,num+1):
 		input_result = int(str_input)
 		if(input_result != result):
 			RightOrWrong = False
+			WrongQuestion.append(question)
 		else:
 			RightOrWrong = True
 			Score += EachScore
-
 	except:
 			input_result = str_input
 			RightOrWrong = False
+			WrongQuestion.append(question)
+
+
 	TimeSpan = time.time() - CurrentTime 
 	TotalTime += TimeSpan
+
 
 	with open('result.csv', 'a+',newline='') as csvfile:
 		spamwriter = csv.writer(csvfile,dialect='excel')
 		spamwriter.writerow([question , str_input,RightOrWrong,time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())), TimeSpan])
 
+
 print("-------------------结果---------------------")
 print("得分为 %d " %Score)
 print("共耗时 %d秒 " %TotalTime)
+print("--------------------------------------------")
+print("错误题目")
+for question in WrongQuestion:
+	print(question)
