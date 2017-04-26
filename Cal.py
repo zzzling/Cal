@@ -1,9 +1,8 @@
-#coding:utf-8
+﻿#coding:utf-8
 
 import random
 import csv
 import time
-
 
 
 while(True):
@@ -51,7 +50,7 @@ for i in range(1,num+1):
 		op_str = "-"
 		result = x - y
 	
-	question = "%d %s %d = " %(x,op_str,y)
+	question = "第%d题： %d %s %d = " %(i,x,op_str,y)
 	print(question)
 	CurrentTime = time.time()
 	str_input = input("请输入答案\n")
